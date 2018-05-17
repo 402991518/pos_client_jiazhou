@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--标题-->
+    <android.support.v7.widget.CardView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" app:cardUseCompatPadding="true" app:cardCornerRadius="@dimen/corner" app:cardElevation="@dimen/corner">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/translucent" android:orientation="horizontal" android:gravity="center">
+            <com.uxun.pos.view.widget.AttentionView android:layout_width="48dp" android:layout_height="48dp" android:layout_margin="@dimen/corner" android:background="@color/translucent"/>
+            <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:background="@color/translucent" android:id="@+id/rebackAmount" android:textColor="#ff0000" android:visibility="gone" android:text="回找:99.99" />
+            <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="5" android:id="@+id/message" android:text="正在处理订单，请稍后..." android:background="@color/default_theme_color" android:textColor="#FFFFFF" android:textStyle="bold"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <!--处理过程-->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="3" android:orientation="vertical" android:gravity="center">
+
+        <android.support.v7.widget.CardView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" app:cardBackgroundColor="@color/translucent" app:cardUseCompatPadding="true" app:cardCornerRadius="@dimen/corner" app:cardElevation="@dimen/corner">
+           <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/click_style" android:orientation="horizontal" android:gravity="center" android:id="@+id/container_1">
+                <com.uxun.pos.view.widget.Order android:layout_width="36dp" android:layout_height="36dp" android:text="1" android:id="@+id/order_1" android:textColor="#FFFFFF" android:background="@color/translucent" android:layout_margin="@dimen/corner"/>
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:text="提交会员积分" android:id="@+id/textView_1" android:textColor="#FFFFFF" android:background="@color/translucent" android:gravity="center|left" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@color/translucent" android:gravity="center">
+                    <com.uxun.pos.view.widget.LoadingView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/loadingView_1" android:visibility="gone" />
+                    <com.uxun.pos.view.widget.SuccessView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/successView_1" android:visibility="gone" />
+                    <com.uxun.pos.view.widget.FailureView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/failureView_1" android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" app:cardBackgroundColor="@color/translucent" app:cardUseCompatPadding="true" app:cardCornerRadius="@dimen/corner" app:cardElevation="@dimen/corner">
+           <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/click_style" android:orientation="horizontal" android:gravity="center" android:id="@+id/container_2">
+                <com.uxun.pos.view.widget.Order android:layout_width="36dp" android:layout_height="36dp" android:text="2" android:id="@+id/order_2" android:textColor="#FFFFFF" android:background="@color/translucent" android:layout_margin="@dimen/corner"/>
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:text="提交销售订单" android:textColor="#FFFFFF" android:id="@+id/textView_2" android:background="@color/translucent" android:gravity="center|left" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@color/translucent" android:gravity="center">
+                    <com.uxun.pos.view.widget.LoadingView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/loadingView_2" android:visibility="gone" />
+                    <com.uxun.pos.view.widget.SuccessView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/successView_2" android:visibility="gone" />
+                    <com.uxun.pos.view.widget.FailureView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/failureView_2" android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" app:cardBackgroundColor="@color/translucent" app:cardUseCompatPadding="true" app:cardCornerRadius="@dimen/corner" app:cardElevation="@dimen/corner">
+           <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/click_style" android:orientation="horizontal" android:gravity="center" android:id="@+id/container_3">
+                <com.uxun.pos.view.widget.Order android:layout_width="36dp" android:layout_height="36dp" android:text="3" android:id="@+id/order_3" android:textColor="#FFFFFF" android:background="@color/translucent" android:layout_margin="@dimen/corner"/>
+                <TextView android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:text="打印销售小票" android:textColor="#FFFFFF" android:id="@+id/textView_3" android:background="@color/translucent" android:gravity="center|left" />
+                <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@color/translucent" android:gravity="center">
+                    <com.uxun.pos.view.widget.LoadingView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/loadingView_3" android:visibility="gone" />
+                    <com.uxun.pos.view.widget.SuccessView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/successView_3" android:visibility="gone" />
+                    <com.uxun.pos.view.widget.FailureView android:layout_width="36dp" android:layout_height="36dp" android:background="@color/translucent" android:id="@+id/failureView_3" android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <!--返回按钮-->
+    <android.support.v7.widget.CardView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" app:cardUseCompatPadding="true" app:cardCornerRadius="@dimen/corner" app:cardElevation="@dimen/corner">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/cancel" android:orientation="vertical" android:gravity="center" android:background="@drawable/click_style" android:clickable="true" android:focusable="true">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@color/translucent" android:src="@mipmap/back" android:scaleType="centerInside"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+ </LinearLayout>

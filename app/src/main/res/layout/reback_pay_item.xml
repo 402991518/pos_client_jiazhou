@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center">
+
+    <View
+        android:layout_width="@dimen/corner"
+        android:layout_height="match_parent"
+        android:background="@color/translucent" />
+
+    <com.uxun.pos.view.widget.Order
+        android:id="@+id/order"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@color/translucent"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/translucent"
+        android:text="微信" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/translucent"
+        android:text="100" />
+
+
+    <LinearLayout
+        android:id="@+id/container_1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/translucent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/operate"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@color/translucent"
+            android:src="@mipmap/reback_pay" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/translucent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <com.uxun.pos.view.widget.SuccessView
+            android:id="@+id/successView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@color/translucent" />
+
+    </LinearLayout>
+
+</LinearLayout>

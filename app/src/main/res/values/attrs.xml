@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressWheel">
+        <attr name="radius" format="dimension" />
+        <attr name="speed" format="float" />
+        <attr name="cycle" format="integer" />
+        <attr name="barColor" format="color" />
+        <attr name="rimColor" format="color" />
+        <attr name="barWidth" format="dimension" />
+        <attr name="rimWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomButtom">
+        <attr name="colorBg" format="color" />
+        <attr name="colorText" format="color" />
+        <attr name="icon" format="reference" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+</resources>

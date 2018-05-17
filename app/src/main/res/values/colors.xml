@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--透明 -->
+    <color name="translucent">#00000000</color>
+    <!-- 默认背景颜色 -->
+    <color name="default_bg_color">#f0ece0</color>
+    <!-- 默认主题颜色 -->
+    <color name="default_theme_color">#0071C1</color>
+
+</resources>

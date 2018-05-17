@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/default_theme_color"
+        android:text="¥：1888.00" />
+
+
+    <com.uxun.pos_client.view.widget.listview.ScrollerListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.uxun.pos_client.view.widget.CustomButtom
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:icon="@mipmap/alipay"
+                app:text="支付宝" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <com.uxun.pos_client.view.widget.CustomButtom
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:icon="@mipmap/wechat"
+                app:text="支付宝" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.uxun.pos_client.view.widget.CustomButtom
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:icon="@mipmap/union"
+                app:text="银联" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <com.uxun.pos_client.view.widget.CustomButtom
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:icon="@mipmap/more"
+                app:text="更多" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

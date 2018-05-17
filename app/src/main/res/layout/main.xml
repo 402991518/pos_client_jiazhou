@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:id="@+id/more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/click_style"
+            android:clickable="true"
+            android:gravity="center|left">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:background="@color/translucent"
+                android:src="@mipmap/more" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/grdname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/click_style"
+            android:clickable="true"
+            android:textColor="#FFFFFF" />
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/member"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:gravity="center|right"
+                android:paddingRight="8dp"
+                android:text="会员"
+                android:textColor="#FFFFFF" />
+
+            <View
+                android:id="@+id/memberTip"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/tip"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.uxun.pos.view.widget.listview.ScrollerListView
+        android:id="@+id/scrollerListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="24"
+        android:background="#EFEFEF"
+        android:divider="#888888"
+        android:dividerHeight="1dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="14"
+        android:background="#C1C1C1"
+        android:orientation="vertical"
+        android:paddingTop="4dp">
+
+        <fragment
+            android:id="@+id/fragment"
+            android:name="com.uxun.pos.view.fragment.WareList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/translucent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+
+            <com.uxun.pos.view.widget.CustomButtom
+                android:id="@+id/total"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                app:icon="@mipmap/amount"
+                app:text="0.00" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:background="#C1C1C1" />
+
+            <com.uxun.pos.view.widget.CustomButtom
+                android:id="@+id/settle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                app:icon="@mipmap/payment"
+                app:text="结算" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/default_theme_color"
+            android:gravity="center|left"
+            android:paddingLeft="8dp"
+            android:text="total"
+            android:textColor="#ffffff" />
+
+        <View
+            android:id="@+id/space"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/complete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/click_style"
+            android:clickable="true"
+            android:drawablePadding="8dp"
+            android:drawableRight="@mipmap/reback"
+            android:gravity="center|right"
+            android:paddingRight="8dp"
+            android:text="销售完成\n点我返回"
+            android:textColor="#ffffff"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/resubmit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/click_style"
+            android:clickable="true"
+            android:drawablePadding="8dp"
+            android:drawableRight="@mipmap/submit"
+            android:gravity="center|right"
+            android:paddingRight="8dp"
+            android:text="提交订单出错\n点我重新提交"
+            android:textColor="#ffffff"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <com.uxun.pos.view.widget.listview.ScrollerListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:background="#C1C1C1"
+        android:divider="#EFEFEF"
+        android:dividerHeight="1dp"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/backContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:background="#C1C1C1">
+
+        <com.uxun.pos.view.widget.CustomButtom
+            android:id="@+id/back"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            app:colorBg="#C1C1C1"
+            app:icon="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/corner"
+            android:background="#C1C1C1"
+            android:text="请选择一种支付方式进行付款"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.uxun.pos.view.fragment.SettleMore"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7" />
+</LinearLayout>

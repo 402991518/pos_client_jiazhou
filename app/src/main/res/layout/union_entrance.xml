@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="@color/translucent"
+        app:cardCornerRadius="@dimen/corner"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/translucent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/container_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:text="银行卡"
+                    android:textColor="#000000" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/translucent" />
+
+                <com.uxun.pos.view.widget.SuccessView
+                    android:id="@+id/successView_1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/translucent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:text="扫码"
+                    android:textColor="#000000" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/translucent" />
+
+                <com.uxun.pos.view.widget.SuccessView
+                    android:id="@+id/successView_2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/translucent"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <!-- 第1行 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/translucent"
+        android:orientation="horizontal">
+
+        <!--1.签到-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_signin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="签到"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--2.结算-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_settle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="结算"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <!--4.重打印-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_reprint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="重打印"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+    <!-- 第2行 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/translucent"
+        android:orientation="horizontal">
+
+        <!--4.末笔查询-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_trade_last" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="末笔查询"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--5.交易查询-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_trade_query" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="交易查询"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <!--6.余额查询-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_balance_query" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="余额查询"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+    <!-- 第3行 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/translucent"
+        android:orientation="horizontal">
+
+        <!--7.签到-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_manager" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="系统管理"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--8.结算-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_params" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="系统参数"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <!--9.结算-->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/union_key_password" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="系统密码"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardCornerRadius="@dimen/corner"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/button_0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="返回"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

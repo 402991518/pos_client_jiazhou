@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6">
+
+        <com.uxun.pos_client.view.widget.CustomButtom
+            android:id="@+id/more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:icon="@mipmap/caidan" />
+
+        <com.uxun.pos_client.view.widget.CustomButtom
+            android:id="@+id/grdname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:colorText="#ffffff" />
+
+        <com.uxun.pos_client.view.widget.CustomButtom
+            android:id="@+id/member"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:colorText="#ffffff"
+            app:text="会员" />
+
+    </LinearLayout>
+
+    <com.uxun.pos_client.view.widget.listview.ScrollerListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="24"
+        android:background="#EFEFEF"
+        android:divider="#888888"
+        android:dividerHeight="1dp" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.uxun.pos_client.view.fragment.WareList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/totalLabel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#f9be00"
+            android:gravity="center|right"
+            android:text="合计：" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="#f9be00"
+            android:gravity="center|left"
+            android:text="0.00" />
+
+        <com.uxun.pos_client.view.widget.CustomButtom
+            android:id="@+id/settle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            app:icon="@mipmap/payment"
+            app:text="结算" />
+
+    </LinearLayout>
+
+</LinearLayout>

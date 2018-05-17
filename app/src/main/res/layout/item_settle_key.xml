@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/translucent"
+    android:orientation="vertical">
+
+    <!--第1行-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/translucent"
+        android:orientation="horizontal">
+
+        <!--第1行第1列-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/container_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/corner"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/icon_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/pay_wechat" />
+
+                <TextView
+                    android:id="@+id/text_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="微信"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--第1行第2列-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/container_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/corner"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/icon_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/pay_alipay" />
+
+                <TextView
+                    android:id="@+id/text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="支付宝"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <!--第2行-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/translucent"
+        android:orientation="horizontal">
+
+        <!--第2行第1列-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/container_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/corner"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/icon_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/pay_union" />
+
+                <TextView
+                    android:id="@+id/text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="银行卡"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--第2行第2列-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/container_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="@dimen/corner"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/translucent"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/click_style"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/icon_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/translucent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/more" />
+
+                <TextView
+                    android:id="@+id/text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/corner"
+                    android:background="@color/translucent"
+                    android:text="现金"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

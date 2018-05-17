@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.uxun.pos">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".global.Application"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/base">
+
+        <activity android:name=".view.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.Main" />
+        <activity android:name=".view.Lock" />
+        <activity android:name=".view.Settle" />
+        <activity android:name=".view.Submit" />
+        <activity android:name=".view.Reprint" />
+        <activity android:name=".view.Auth" />
+        <activity android:name=".view.UnionEntrance" />
+        <activity android:name=".view.camera.ZxingScan" />
+        <activity android:name=".view.camera.ZbarScan" />
+        <activity android:name=".view.member.MemberMain" />
+        <activity android:name=".view.member.MemberQuery" />
+        <activity android:name=".view.reback.RebackMain" />
+        <activity android:name=".view.reback.RebackPay" />
+        <activity android:name=".view.reback.RebackSubmit" />
+
+    </application>
+
+</manifest>

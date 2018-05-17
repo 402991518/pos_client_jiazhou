@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="3" android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_7" app:text="7" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_8" app:text="8" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_9" app:text="9" app:colorBg="#E0E1E3"/>
+            </LinearLayout>
+
+             <View android:layout_width="match_parent" android:layout_height="1dp" />
+
+             <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_4" app:text="4" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_5" app:text="5" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_6" app:text="6" app:colorBg="#E0E1E3"/>
+             </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" />
+
+             <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_1" app:text="1" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_2" app:text="2" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_3" app:text="3" app:colorBg="#E0E1E3"/>
+             </LinearLayout>
+
+             <View android:layout_width="match_parent" android:layout_height="1dp" />
+
+             <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal">
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" android:id="@+id/key_0" app:text="0" app:colorBg="#E0E1E3"/>
+                <View android:layout_width="1dp" android:layout_height="match_parent" />
+                <com.uxun.pos.view.widget.CustomButtom android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:id="@+id/key_p" app:text="." app:colorBg="#E0E1E3"/>
+             </LinearLayout>
+
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" />
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical">
+            <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:id="@+id/key_b" app:text="退格" app:colorBg="#EE6225"/>
+            <View android:layout_width="match_parent" android:layout_height="1dp"/>
+            <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:id="@+id/key_c" app:text="清除" app:colorBg="#C1DA4A"/>
+            <View android:layout_width="match_parent" android:layout_height="1dp"/>
+            <com.uxun.pos.view.widget.CustomButtom android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="2" android:id="@+id/key_o" app:text="确定" app:colorBg="#6FD2F9"/>
+            <View android:layout_width="match_parent" android:layout_height="1dp"/>
+        </LinearLayout>
+
+</LinearLayout>

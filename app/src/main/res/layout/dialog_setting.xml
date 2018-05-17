@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/corner"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <com.uxun.pos.view.widget.AttentionView
+        android:id="@+id/attention"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="visible" />
+
+    <com.uxun.pos.view.widget.SuccessView
+        android:id="@+id/success"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone" />
+
+    <com.uxun.pos.view.widget.FailureView
+        android:id="@+id/failure"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.uxun.pos.view.widget.LoadingView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="请输入RPC服务的IP地址" />
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:inputType="text" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <com.uxun.pos.view.widget.CustomButtom
+            android:id="@+id/test"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:text="测试" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
+
+        <com.uxun.pos.view.widget.CustomButtom
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:text="保存" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
