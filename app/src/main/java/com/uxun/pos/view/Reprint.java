@@ -17,6 +17,7 @@ import com.allinpay.usdk.core.data.BaseData;
 import com.allinpay.usdk.core.data.Busi_Data;
 import com.allinpay.usdk.core.data.RequestData;
 import com.allinpay.usdk.core.data.ResponseData;
+import com.uxun.pos.domain.bo.submit.YuelangPrize;
 import com.uxun.pos.domain.constant.ConstantLogin;
 import com.uxun.pos.domain.dto.Proc;
 import com.uxun.pos.global.NetworkConfig;
@@ -302,10 +303,44 @@ public class Reprint extends RootActivity {
             }
         }
 
-        ArrayList<String> printLines = ReprintUtils.print(bean_h, bean_ds, bean_ps, proc.h.ExtCol10, proc.h.PosNo, proc.h.Cashier, proc.h.OrgCode);
+
+        List<String> memberInfo = new ArrayList<>();
+
+        if (proc.yuelangScore != null) {
+            memberInfo.add("会员系统流水号:" + proc.yuelangScore.tradeno);
+            memberInfo.add("会员卡号:" + proc.yuelangScore.cardno);
+            memberInfo.add("本次获得积分:" + proc.yuelangScore.tradeScore);
+            memberInfo.add("卡可用积分:" + proc.yuelangScore.canuseScore);
+            memberInfo.add("积分分店:" + proc.yuelangScore.tradeDept);
+        }
+
+        if (proc.yuelangPrizes != null) {
+            for (int i = 0; i < proc.yuelangPrizes.size(); i++) {
+                YuelangPrize yuelangPrize = proc.yuelangPrizes.get(i);
+                if (yuelangPrize != null) {
+                    memberInfo.add(yuelangPrize.name);
+                }
+            }
+        }
+
+        if (proc.yuelangReback != null) {
+            memberInfo.add("会员退单流水号:" + proc.yuelangReback.tradeno);
+            memberInfo.add("会员卡号:" + proc.yuelangReback.cardno);
+            memberInfo.add("本次退积分:" + proc.yuelangReback.tradeScore);
+            memberInfo.add("卡可用积分:" + proc.yuelangReback.canuseScore);
+            memberInfo.add("积分分店:" + proc.yuelangReback.tradeDept);
+        }
+
+        if( proc.h.ExtCol10!=null &&!"".equals(proc.h.ExtCol10)){
+            memberInfo.add(proc.h.ExtCol10);
+        }
+
+
+        ArrayList<String> printLines = ReprintUtils.print(bean_h, bean_ds, bean_ps,memberInfo, proc.h.PosNo, proc.h.Cashier, proc.h.OrgCode);
         for (int i = 0; i < printLines.size(); i++) {
             adapter.add(printLines.get(i));
         }
+
         adapter.notifyDataSetChanged();
     }
 

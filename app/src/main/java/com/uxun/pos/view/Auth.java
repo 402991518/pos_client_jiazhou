@@ -123,12 +123,7 @@ public class Auth extends RootActivity {
         if (requestCode == 1 && resultCode == 1) {
             String ups = data.getStringExtra("message");
             if (ups != null) {
-                this.password.setText(ups);
-                this.password.setSelection(ups.length());
-                this.password.requestFocus();
-                if ("".equals(this.username.getText().toString())) {
-                    this.username.requestFocus();
-                }
+                query("", ups);
             }
         }
     }

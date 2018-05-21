@@ -6,8 +6,8 @@ android {
         applicationId "com.uxun.pos"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 8
-        versionName "1.1.1.2018050900"
+        versionCode 9
+        versionName "1.1.1.2018051800"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

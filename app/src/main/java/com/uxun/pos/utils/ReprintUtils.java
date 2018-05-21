@@ -77,7 +77,7 @@ public class ReprintUtils {
     private static List<ReprintUtils.Bean_P> ps;
 
 
-    public static ArrayList<String> print(ReprintUtils.Bean_H h, List<ReprintUtils.Bean_D> ds, List<ReprintUtils.Bean_P> ps, String memberInfo, String posno, String casher, String orgcode) {
+    public static ArrayList<String> print(ReprintUtils.Bean_H h, List<ReprintUtils.Bean_D> ds, List<ReprintUtils.Bean_P> ps, List<String> memberInfo, String posno, String casher, String orgcode) {
         // 初始化
         list = new ArrayList<>();
         ReprintUtils.h = h;
@@ -109,7 +109,7 @@ public class ReprintUtils {
         list.add("交易时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(h.tradeDate));
         list.add("重印时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         if (memberInfo != null) {
-            list.add(memberInfo);
+            list.addAll(memberInfo);
         }
         //5.尾
         createFoot();

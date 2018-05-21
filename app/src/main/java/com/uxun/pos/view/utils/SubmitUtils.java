@@ -11,6 +11,9 @@ import com.uxun.pos.domain.bo.submit.SaleH;
 import com.uxun.pos.domain.bo.submit.SaleP;
 import com.uxun.pos.domain.bo.submit.SaleS;
 import com.uxun.pos.domain.bo.submit.Submiter;
+import com.uxun.pos.domain.bo.submit.YuelangPrize;
+import com.uxun.pos.domain.bo.submit.YuelangReback;
+import com.uxun.pos.domain.bo.submit.YuelangScore;
 import com.uxun.pos.domain.constant.ConstantLogin;
 import com.uxun.pos.domain.dto.Goods;
 import com.uxun.pos.global.Application;
@@ -38,11 +41,19 @@ public class SubmitUtils {
     private static Byte datasource;
     private static Date datetime;
 
-    //memberCardno：会员卡号
-    //memberSerialNumber：会员积分流水号
-    public static String getSubmitJson(PayAdapter payAdapter, String memberCardno, String memberSerialNumber, String memeberInfo) {
+    public static String getSubmitJson(PayAdapter payAdapter, String memberErrMsg) {
         init();
-        Submiter submiter = new Submiter(createH(payAdapter, memberCardno, memberSerialNumber, memeberInfo), createD(payAdapter), createP(payAdapter), null, createS(payAdapter));
+        Submiter submiter = new Submiter(createH(payAdapter, memberErrMsg), createD(payAdapter), createP(payAdapter), null, createS(payAdapter));
+        return GsonUtils.getInstance().toJson(submiter);
+    }
+
+
+    public static String getSubmitJson(PayAdapter payAdapter, YuelangScore yuelangScore, List<YuelangPrize> yuelangPrizes, YuelangReback yuelangReback) {
+        init();
+        Submiter submiter = new Submiter(createH(payAdapter, null), createD(payAdapter), createP(payAdapter), null, createS(payAdapter));
+        submiter.yuelangScore = yuelangScore;
+        submiter.yuelangPrizes = yuelangPrizes;
+        submiter.yuelangReback = yuelangReback;
         return GsonUtils.getInstance().toJson(submiter);
     }
 
@@ -58,7 +69,7 @@ public class SubmitUtils {
     }
 
     // 创建H表
-    private static SaleH createH(PayAdapter payAdapter, String memberCardno, String memberSerialNumber, String memeberInfo) {
+    private static SaleH createH(PayAdapter payAdapter, String memberErrMsg) {
         SaleH saleH = new SaleH();
         // 基本信息
         saleH.SaleNo = saleno;
@@ -78,9 +89,7 @@ public class SubmitUtils {
         // 销售信息
         saleH.Amount = payAdapter.getWareAdapter().getTotalSale();
         saleH.RealAmt = payAdapter.getWareAdapter().getTotalReal();
-        saleH.MemcardNo = memberCardno;
-        saleH.ExpandNo = memberSerialNumber;
-        saleH.ExtCol10 = memeberInfo;
+        saleH.ExtCol10 = memberErrMsg;
         saleH.ExtCol1 = Application.getVersionName();
         saleH.ExtCol2 = Application.getVersionCode();
         return saleH;

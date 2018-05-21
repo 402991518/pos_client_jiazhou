@@ -5,6 +5,7 @@ import com.uxun.pos.domain.bo.submit.SaleH;
 import com.uxun.pos.domain.bo.submit.SaleP;
 import com.uxun.pos.domain.bo.submit.SaleS;
 import com.uxun.pos.domain.bo.submit.Submiter;
+import com.uxun.pos.domain.bo.submit.YuelangReback;
 import com.uxun.pos.domain.constant.ConstantLogin;
 import com.uxun.pos.domain.dto.Proc;
 import com.uxun.pos.global.Application;
@@ -33,9 +34,18 @@ public class RebackSubmitUtils {
     private static Date datetime;
 
 
-    public static String getSubmitJson(Proc proc, List<RebackPay.Pay> pays, String memberCardno, String memberSerialNumber, String returnMan, String memeberInfo) {
+    public static String getSubmitJson(Proc proc, List<RebackPay.Pay> pays, String returnMan, String memeberErrInfo, Date datetime) {
         init();
-        Submiter submiter = new Submiter(createH(proc, memberCardno, memberSerialNumber, returnMan,memeberInfo), createD(proc), createP(proc, pays), null, createS(proc, pays));
+        RebackSubmitUtils.datetime = datetime;
+        Submiter submiter = new Submiter(createH(proc, returnMan, memeberErrInfo), createD(proc), createP(proc, pays), null, createS(proc, pays));
+        return GsonUtils.getInstance().toJson(submiter);
+    }
+
+    public static String getSubmitJson(Proc proc, List<RebackPay.Pay> pays, String returnMan, YuelangReback yuelangReback, Date datetime) {
+        init();
+        RebackSubmitUtils.datetime = datetime;
+        Submiter submiter = new Submiter(createH(proc, returnMan, null), createD(proc), createP(proc, pays), null, createS(proc, pays));
+        submiter.yuelangReback = yuelangReback;
         return GsonUtils.getInstance().toJson(submiter);
     }
 
@@ -47,11 +57,10 @@ public class RebackSubmitUtils {
         posno = ConstantLogin.loginData.device.PosNo;
         cashier = ConstantLogin.loginData.user.UserId;
         datasource = 1;
-        datetime = new Date();
     }
 
     // 创建H表
-    private static SaleH createH(Proc proc, String memberCardno, String memberSerialNumber, String returnMan, String memeberInfo) {
+    private static SaleH createH(Proc proc, String returnMan, String memeberErrInfo) {
         SaleH saleH = new SaleH();
         // 基本信息
         saleH.SaleNo = saleno;
@@ -74,9 +83,7 @@ public class RebackSubmitUtils {
         saleH.OldSaleNo = proc.h.SaleNo;
 
         saleH.ReturnMan = returnMan;
-        saleH.MemcardNo = memberCardno;
-        saleH.ExpandNo = memberSerialNumber;
-        saleH.ExtCol10 = memeberInfo;
+        saleH.ExtCol10 = memeberErrInfo;
         saleH.ExtCol1 = Application.getVersionName();
         saleH.ExtCol2 = Application.getVersionCode();
         return saleH;

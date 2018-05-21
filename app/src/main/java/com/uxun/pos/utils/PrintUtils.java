@@ -1,6 +1,9 @@
 package com.uxun.pos.utils;
 
 
+import com.uxun.pos.domain.bo.submit.YuelangPrize;
+import com.uxun.pos.domain.bo.submit.YuelangReback;
+import com.uxun.pos.domain.bo.submit.YuelangScore;
 import com.uxun.pos.domain.constant.ConstantLogin;
 import com.uxun.pos.domain.dto.TicketConfig;
 
@@ -75,7 +78,43 @@ public class PrintUtils {
     private static List<Bean_P> ps;
 
 
-    public static ArrayList<String> print(Bean_H h, List<Bean_D> ds, List<Bean_P> ps, String memberInfo) {
+    public static ArrayList<String> print(Bean_H h, List<Bean_D> ds, List<Bean_P> ps, String memberErrMsg) {
+        // 初始化
+        list = new ArrayList<>();
+        PrintUtils.h = h;
+        PrintUtils.ds = ds;
+        PrintUtils.ps = ps;
+
+        //1.头
+        createHead();
+
+        //2.标题
+
+        createTitle();
+        createSep();
+
+        //3.商品明细
+        create_D();
+        createSep();
+
+        //4.付款明细
+        create_P();
+        createSep();
+
+        if (h.oldSaleno != null) {
+            list.add("退货单号:" + h.saleno);
+            list.add("原销售单号:" + h.oldSaleno);
+        } else {
+            list.add("销售单号:" + h.saleno);
+        }
+        list.add("交易时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(h.tradeDate));
+        printMemberInfoError(memberErrMsg);
+        //5.尾
+        createFoot();
+        return list;
+    }
+
+    public static ArrayList<String> print(Bean_H h, List<Bean_D> ds, List<Bean_P> ps, YuelangScore yuelangScore, List<YuelangPrize> yuelangPrizes, YuelangReback yuelangReback) {
         // 初始化
         list = new ArrayList<>();
         PrintUtils.h = h;
@@ -104,12 +143,43 @@ public class PrintUtils {
             list.add("销售单号:" + h.saleno);
         }
         list.add("交易时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(h.tradeDate));
-        if (memberInfo != null) {
-            list.add(memberInfo);
-        }
+        printMemberInfo(yuelangScore, yuelangPrizes, yuelangReback);
         //5.尾
         createFoot();
         return list;
+    }
+
+    private static void printMemberInfo(YuelangScore yuelangScore, List<YuelangPrize> yuelangPrizes, YuelangReback yuelangReback) {
+        if (yuelangScore != null) {
+            list.add("会员系统流水号:" + yuelangScore.tradeno);
+            list.add("会员卡号:" + yuelangScore.cardno);
+            list.add("本次获得积分:" + yuelangScore.tradeScore);
+            list.add("卡可用积分:" + yuelangScore.canuseScore);
+            list.add("积分分店:" + yuelangScore.tradeDept);
+        }
+
+        if (yuelangPrizes != null) {
+            for (int i = 0; i < yuelangPrizes.size(); i++) {
+                YuelangPrize yuelangPrize = yuelangPrizes.get(i);
+                if (yuelangPrize != null) {
+                    list.add(yuelangPrize.name);
+                }
+            }
+        }
+
+        if (yuelangReback != null) {
+            list.add("会员退单流水号:" + yuelangReback.tradeno);
+            list.add("会员卡号:" + yuelangReback.cardno);
+            list.add("本次退积分:" + yuelangReback.tradeScore);
+            list.add("卡可用积分:" + yuelangReback.canuseScore);
+            list.add("积分分店:" + yuelangReback.tradeDept);
+        }
+    }
+
+    private static void printMemberInfoError(String memberErrMsg) {
+        if (memberErrMsg != null) {
+            list.add(memberErrMsg);
+        }
     }
 
     // 头

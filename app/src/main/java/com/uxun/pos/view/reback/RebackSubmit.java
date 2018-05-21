@@ -19,6 +19,7 @@ import com.allinpay.usdk.core.data.ResponseData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uxun.pos.R;
+import com.uxun.pos.domain.bo.submit.YuelangReback;
 import com.uxun.pos.domain.constant.ConstantLogin;
 import com.uxun.pos.domain.dto.Proc;
 import com.uxun.pos.global.Application;
@@ -82,9 +83,8 @@ public class RebackSubmit extends RootActivity {
     protected LinearLayout container_3;
 
     private String saleInfo;
-    private String memeberInfo;
-    private String memberCardno;
-    private String memberSerialNumber;
+    private String memeberErrInfo = null;
+    private YuelangReback yuelangReback;
 
 
     private String returnMan;
@@ -92,6 +92,8 @@ public class RebackSubmit extends RootActivity {
     private List<RebackPay.Pay> pays; //退货付款数据
 
     private int printcount;
+
+    private Date datetime;
 
 
     @Override
@@ -154,15 +156,17 @@ public class RebackSubmit extends RootActivity {
 
     //1.扣除积分信息
     private void submitMemberInfo() {
+        memeberErrInfo = null;
         disableClick();
-        if (proc.h.MemcardNo == null || proc.h.ExpandNo == null) {
-            textView_1.setText("原单没有使用会员卡,无需扣减积分!");
+        if (proc.yuelangScore == null) {
+            textView_1.setText("原单没有参与积分,无需扣减积分!");
             loadingView_1.setVisibility(View.GONE);
             successView_1.setVisibility(View.VISIBLE);
             failureView_1.setVisibility(View.GONE);
             submitSaleInfo();
             return;
         }
+
         if (ConstantLogin.loginData.zhaokeyi == null) {
             textView_1.setText("后台没有设置招客易会员接口参数,无法扣减积分");
             loadingView_1.setVisibility(View.GONE);
@@ -183,8 +187,8 @@ public class RebackSubmit extends RootActivity {
         temp.put("MACID", ConstantLogin.loginData.zhaokeyi.macid);//机器ID,招客易系统后台提供
         temp.put("UCARDNO", ConstantLogin.loginData.zhaokeyi.ucardno);//操作员ID,招客易系统后台提供
         temp.put("UPASS", ConstantLogin.loginData.zhaokeyi.upass);//操作员登录密码,招客易系统后台提供
-        temp.put("CARDNO", proc.h.MemcardNo);//卡面号,真实卡号
-        temp.put("LSHAO", proc.h.ExpandNo);//流水号,消费奖励的流水号
+        temp.put("CARDNO", proc.yuelangScore.cardno);//卡面号,真实卡号
+        temp.put("LSHAO", proc.yuelangScore.tradeno);//流水号,消费奖励的流水号
         //3.请求网络
         Object[] object = new Object[]{temp};
         wrapper.put("data", object);
@@ -217,20 +221,23 @@ public class RebackSubmit extends RootActivity {
                     errMsg = "扣减积分出错:" + content.get("Message") + "";
                 } else {
                     //1.解析结果
-                    String CARDNO = (String) content.get("CARDNO");//会员卡号
-                    String LSHAO = (String) content.get("LSHAO");//会员系统流水号
-                    String BCXFJF = (String) content.get("BCXFJF");//本次获得积分
-                    String YXFDM = (String) content.get("YXFDM");//积分分店
-                    String KYJF = (String) content.get("KYJF");//卡可用积分
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("会员卡号:" + CARDNO + "\r\n");
-                    stringBuilder.append("本次获得积分:" + BCXFJF + "\r\n");
-                    stringBuilder.append("卡可用积分:" + KYJF + "\r\n");
-                    stringBuilder.append("会员系统流水号:" + LSHAO + "\r\n");
-                    stringBuilder.append("积分分店:" + YXFDM + "\r\n");
-                    memberCardno = CARDNO;
-                    memberSerialNumber = LSHAO;
-                    memeberInfo = stringBuilder.toString();
+                    yuelangReback = new YuelangReback();
+
+                    yuelangReback.orgcode = ConstantLogin.loginData.device.OrgCode;
+                    yuelangReback.posno = ConstantLogin.loginData.device.PosNo;
+                    yuelangReback.saleno = ConstantLogin.loginData.saleno;
+
+                    yuelangReback.cardno = (String) content.get("CARDNO");//会员卡号
+                    yuelangReback.tradeno = (String) content.get("LSHAO");// 退单流水号
+                    yuelangReback.tradeTime = (String) content.get("XFDATE");//退单时间
+                    yuelangReback.tradeDept = (String) content.get("YXFDM");//交易分店
+
+                    yuelangReback.tradeScore = (String) content.get("BCXFJF");//本次退积分
+                    yuelangReback.canuseScore = (String) content.get("KYJF");//现在卡可用积分
+                    yuelangReback.scoreAmount = (String) content.get("BCXFJE");//参数积分金额
+
+                    yuelangReback.Time_Create = new Date();
+                    yuelangReback.Create_By = ConstantLogin.loginData.user.UserId;
                 }
             } else {
                 errMsg = message.obj + "";
@@ -244,7 +251,7 @@ public class RebackSubmit extends RootActivity {
             loadingView_1.setVisibility(View.GONE);
             successView_1.setVisibility(View.GONE);
             failureView_1.setVisibility(View.VISIBLE);
-            memeberInfo = errMsg;
+            memeberErrInfo = errMsg;
             DialogYN.Builder builder = new DialogYN.Builder();
             builder.defaultTitle = "警告！";
             builder.defaultMessage = errMsg;
@@ -293,12 +300,21 @@ public class RebackSubmit extends RootActivity {
         loadingView_2.setVisibility(View.VISIBLE);
         successView_2.setVisibility(View.GONE);
         failureView_2.setVisibility(View.GONE);
+
+        String json;
+        datetime = new Date();
+        if (memeberErrInfo != null && !"".equals(memeberErrInfo)) {
+            json = RebackSubmitUtils.getSubmitJson(proc, this.pays, this.returnMan, this.memeberErrInfo, datetime);
+        } else {
+            json = RebackSubmitUtils.getSubmitJson(proc, this.pays, this.returnMan, this.yuelangReback, datetime);
+        }
+
         VolleyUtils.post(NetworkConfig.getUrl() + "submit/submit", new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 processSaleInfoResult(msg);
             }
-        }, "json", RebackSubmitUtils.getSubmitJson(proc, this.pays, this.memberCardno, this.memberSerialNumber, this.returnMan, this.memeberInfo));
+        }, "json", json);
     }
 
     //处理销售订单信息
@@ -460,7 +476,7 @@ public class RebackSubmit extends RootActivity {
 
 
     private String createPrintData() {
-        PrintUtils.Bean_H print_h = new PrintUtils.Bean_H(ConstantLogin.loginData.saleno, proc.h.SaleNo, new Date(), proc.h.Amount.multiply(new BigDecimal(-1)), proc.h.RealAmt.multiply(new BigDecimal(-1)));
+        PrintUtils.Bean_H print_h = new PrintUtils.Bean_H(ConstantLogin.loginData.saleno, proc.h.SaleNo, datetime, proc.h.Amount.multiply(new BigDecimal(-1)), proc.h.RealAmt.multiply(new BigDecimal(-1)));
         List<PrintUtils.Bean_D> print_ds = new ArrayList<>();
         List<Proc.D> ds = proc.ds;
         for (int i = 0; i < ds.size(); i++) {
@@ -485,7 +501,14 @@ public class RebackSubmit extends RootActivity {
                 print_ps.add(printP);
             }
         }
-        ArrayList<String> list = PrintUtils.print(print_h, print_ds, print_ps, memeberInfo);
+
+        ArrayList<String> list;
+        if (memeberErrInfo != null && !"".equals(memeberErrInfo)) {
+            list = PrintUtils.print(print_h, print_ds, print_ps, memeberErrInfo);
+        } else {
+            list = PrintUtils.print(print_h, print_ds, print_ps, null, null, yuelangReback);
+        }
+
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             result.append(list.get(i) + "\r\n");

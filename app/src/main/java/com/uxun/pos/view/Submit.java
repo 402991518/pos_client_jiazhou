@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +23,8 @@ import com.uxun.pos.domain.bo.pay.PayBeanAlipay;
 import com.uxun.pos.domain.bo.pay.PayBeanScan;
 import com.uxun.pos.domain.bo.pay.PayBeanUnion;
 import com.uxun.pos.domain.bo.pay.PayBeanWechat;
+import com.uxun.pos.domain.bo.submit.YuelangPrize;
+import com.uxun.pos.domain.bo.submit.YuelangScore;
 import com.uxun.pos.domain.constant.ConstantLogin;
 import com.uxun.pos.domain.constant.ConstantMember;
 import com.uxun.pos.domain.constant.ConstantPayAdapter;
@@ -47,6 +48,7 @@ import com.uxun.pos.view.widget.SuccessView;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,12 +91,13 @@ public class Submit extends RootActivity {
         }
     };
 
-    private String memeberInfo;
-    private String memberCardno;
-    private String memberSerialNumber;
+
+    private String memberErrMsg = null;
+    private YuelangScore yuelangScore;
+    private List<YuelangPrize> yuelangPrizes;
+
 
     private String saleInfo;
-
     private int printcount;
 
     @Override
@@ -152,6 +155,7 @@ public class Submit extends RootActivity {
 
     //提交积分信息
     private void submitMemberInfo() {
+        memberErrMsg = null;
         disableClick();
         if (ConstantMember.member == null) {
             textView_1.setText("没有刷会员卡,无需提交积分信息！");
@@ -249,20 +253,50 @@ public class Submit extends RootActivity {
                     errMsg = "积分信息提交出错:" + content.get("Message") + "";
                 } else {
                     //1.解析结果
-                    String CARDNO = (String) content.get("CARDNO");//会员卡号
-                    String LSHAO = (String) content.get("LSHAO");//会员系统流水号
-                    String BCXFJF = (String) content.get("BCXFJF");//本次获得积分
-                    String YXFDM = (String) content.get("YXFDM");//积分分店
-                    String KYJF = (String) content.get("KYJF");//卡可用积分
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("会员卡号:" + CARDNO + "\r\n");
-                    stringBuilder.append("本次获得积分:" + BCXFJF + "\r\n");
-                    stringBuilder.append("卡可用积分:" + KYJF + "\r\n");
-                    stringBuilder.append("会员系统流水号:" + LSHAO + "\r\n");
-                    stringBuilder.append("积分分店:" + YXFDM + "\r\n");
-                    memberCardno = CARDNO;
-                    memberSerialNumber = LSHAO;
-                    memeberInfo = stringBuilder.toString();
+                    yuelangScore = new YuelangScore();
+
+                    yuelangScore.orgcode = ConstantLogin.loginData.device.OrgCode;
+                    yuelangScore.posno = ConstantLogin.loginData.device.PosNo;
+                    yuelangScore.saleno = ConstantLogin.loginData.saleno;
+
+                    yuelangScore.cardno = (String) content.get("CARDNO");//会员卡号
+                    yuelangScore.tradeno = (String) content.get("LSHAO");//会员系统流水号
+                    yuelangScore.tradeScore = (String) content.get("BCXFJF");//本次获得积分
+                    yuelangScore.tradeTime = (String) content.get("XFDATE");//交易时间
+                    yuelangScore.tradeDept = (String) content.get("YXFDM");//交易分店
+                    yuelangScore.tradeOperator = (String) content.get("USERNAME");//操作员
+                    yuelangScore.canuseScore = (String) content.get("KYJF");//卡可用积分
+                    yuelangScore.cardBalance = (String) content.get("KJE");//卡余额
+                    yuelangScore.payaAmount = (String) content.get("BCYFJE");//本单应付金额
+                    yuelangScore.scoreAmount = (String) content.get("BCXFJE");//参数积分金额
+
+                    yuelangScore.Time_Create = new Date();
+                    yuelangScore.Create_By=ConstantLogin.loginData.user.UserId;
+
+                    //2.赠券信息
+                    try {
+                        List list = (List) content.get("data_quan_zs");
+                        if (list != null) {
+                            yuelangPrizes = new ArrayList<>();
+                            for (int i = 0; i < list.size(); i++) {
+                                Map<String, String> map = (Map) list.get(i);
+                                if (map != null) {
+                                    YuelangPrize yuelangPrize = new YuelangPrize();
+                                    yuelangPrize.orgcode = ConstantLogin.loginData.device.OrgCode;
+                                    yuelangPrize.posno = ConstantLogin.loginData.device.PosNo;
+                                    yuelangPrize.saleno = ConstantLogin.loginData.saleno;
+                                    yuelangPrize.name = map.get("Q_Name");
+                                    yuelangPrize.price = map.get("Q_PRICE");
+                                    yuelangPrize.quantity = map.get("QTY");
+                                    yuelangPrize.rowno=(i+1);
+                                    yuelangPrize.Time_Create = new Date();
+                                    yuelangPrize.Create_By=ConstantLogin.loginData.user.UserId;
+                                    yuelangPrizes.add(yuelangPrize);
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                    }
                 }
             } else {
                 errMsg = "积分信息提交出错";
@@ -276,7 +310,7 @@ public class Submit extends RootActivity {
             loadingView_1.setVisibility(View.GONE);
             successView_1.setVisibility(View.GONE);
             failureView_1.setVisibility(View.VISIBLE);
-            memeberInfo = errMsg;
+            memberErrMsg = errMsg;
             DialogYN.Builder builder = new DialogYN.Builder();
             builder.defaultTitle = "警告！";
             builder.defaultMessage = errMsg;
@@ -325,12 +359,20 @@ public class Submit extends RootActivity {
         loadingView_2.setVisibility(View.VISIBLE);
         successView_2.setVisibility(View.GONE);
         failureView_2.setVisibility(View.GONE);
+
+        String json;
+        if (memberErrMsg != null) {
+            json = SubmitUtils.getSubmitJson(ConstantPayAdapter.payAdapter, memberErrMsg);
+        } else {
+            json = SubmitUtils.getSubmitJson(ConstantPayAdapter.payAdapter, this.yuelangScore, this.yuelangPrizes, null);
+        }
+
         VolleyUtils.post(NetworkConfig.getUrl() + "submit/submit", new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 processSaleInfoResult(msg);
             }
-        }, "json", SubmitUtils.getSubmitJson(ConstantPayAdapter.payAdapter, this.memberCardno, this.memberSerialNumber, this.memeberInfo));
+        }, "json", json);
     }
 
     //处理销售订单信息
@@ -550,11 +592,15 @@ public class Submit extends RootActivity {
                 bean_p.ExtCol5 = "商户名称:" + processNullText(payBeanScan.getMerchantName());
                 bean_p.ExtCol6 = "交易单号:" + processNullText(payBeanScan.getTransactionNumber());
             }
-
-
             ps.add(bean_p);
         }
-        ArrayList<String> list = PrintUtils.print(bean_h, ds, ps, memeberInfo);
+
+        ArrayList<String> list;
+        if (memberErrMsg != null) {
+            list = PrintUtils.print(bean_h, ds, ps, memberErrMsg);
+        } else {
+            list = PrintUtils.print(bean_h, ds, ps, this.yuelangScore, this.yuelangPrizes, null);
+        }
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             result.append(list.get(i) + "\r\n");
